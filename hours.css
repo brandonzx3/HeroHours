@@ -1,7 +1,6 @@
 .main-content {
-    padding-top: 80px;
-    margin: auto;
-    max-width: 1000px;
+    width: 100%;
+    padding-top: 40px;
 }
 .plainflex {
 	display: flex;
@@ -16,7 +15,6 @@
     margin-left: 3.125%;
     margin-right: 3.125;
     height: 90vh;
-
 }
 /* .center {
     margin: auto;
@@ -31,7 +29,7 @@
 } */
 table {
     font-size: 12px;
-    width: 100%;
+    width: 100% !important;
 }
 .alert {
     border: 0;
@@ -48,4 +46,21 @@ table {
 }
 .alert-disabled {
   background: #ff4136;
+}
+
+.input-field {
+    display: flex;
+}
+.input-field input {
+    flex: 1 1 auto;
+    margin-right: 1em;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+}
+article main {
+    flex: 1 1 auto;
+    width: 100%;
 }
