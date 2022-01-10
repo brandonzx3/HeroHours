@@ -39,12 +39,19 @@ const app = {
     mounted() {
         window.addEventListener('online', this.updateOnlineStatus);
         window.addEventListener('offline', this.updateOnlineStatus);
+        window.addEventListener('keydown', (e) => {
+            if (e.key == '*') {
+              location.reload();
+            }
+        });
         document.getElementById('userID').focus();
         this.getUsersData();
     },
     beforeDestroy() {
         window.removeEventListener('online', this.updateOnlineStatus);
         window.removeEventListener('offline', this.updateOnlineStatus);
+        window.removeEventListener('keydown');
+
     },
     computed: {
         localLogEntries() {
@@ -96,7 +103,7 @@ const app = {
                             errorSound.play();
                         }
                         else if (data.status === "success") {
-                            successSound.play
+                            successSound.play();
                         }
                         this.localLog.push({
                             userID: this.form.userID,

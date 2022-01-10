@@ -73,6 +73,7 @@
                     <form @submit.prevent="submitForm">
                         <label><input autocomplete="off" ref="userID" type="text" id="userID" v-model="form.userID" placeholder="User ID"></label>
                         <button>Submit</button>
+                        <p>Enter <strong>+00</strong> to enter <strong>Check In</strong> mode, enter <strong>+01</strong> to enter <strong>Check Out</strong> mode, enter <strong>*</strong> to reload this page</p>
                     </form>
                 </footer>
             </article>
