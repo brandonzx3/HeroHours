@@ -1,0 +1,51 @@
+.main-content {
+    padding-top: 80px;
+    margin: auto;
+    max-width: 1000px;
+}
+.plainflex {
+	display: flex;
+    flex-wrap: wrap;
+	transition: all .3s ease;
+}
+.plainflex > div{
+    flex: 1 1 auto;
+    padding-bottom: 0.6em;  
+}
+.card {
+    margin-left: 3.125%;
+    margin-right: 3.125;
+    height: 520px;
+
+}
+/* .center {
+    margin: auto;
+    width: 90%;
+
+} */
+.w100 {
+    width:100%;
+}
+/* .empty td {
+    padding: 1em 0;
+} */
+table {
+    font-size: 12px;
+    width: 100%;
+}
+.alert {
+    border: 0;
+    border-radius: .2em;  
+    color: #fff;
+    background: #0074d9;
+    margin: 15px;
+}
+.alert-success {
+  background: #2ecc40;
+}
+.alert-warning {
+  background: #ff851b
+}
+.alert-disabled {
+  background: #ff4136;
+}

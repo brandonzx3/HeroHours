@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hours</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    <link rel="stylesheet" href="hours.css">
+
+</head>
+<body>
+    <nav class="">
+        <a href="#" class="brand">
+            <span>Hero Hours</span>
+        </a>
+    </nav>
+    <div id="app" class="plainflex two main-content">
+        <div>
+            <article class="card">
+                <table class="primary center">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Total Hours</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="row in usersData">
+                            <td>{{row["User ID"]}}</td>
+                            <td>{{row["First Name"]}}</td>
+                            <td>{{row["Last Name"]}}</td>
+                            <td>{{convertTimestampToDuration(row["Total Seconds"])}}</td>
+                            <td><span v-bind:class="{success: row['Checked In'] == true, primary: row['Checked In'] == false}" class="label">{{ row["Checked In"] ? 'Checked In' : 'Checked Out' }}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </div>
+        <div v-if="onLine" class="third">
+            <article class="card">
+                <table class="primary center">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Operation</th>
+                            <th>Status</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in localLogEntries">
+                            <td>{{item.userID}}</td>
+                            <td><span v-bind:class="{success: item.operation == 'checkIn', primary: item.operation == 'checkOut'}" class="label">{{item.operation}}</span></td>
+                            <td><span v-bind:class="{success: item.status == 'success', warning: item.status == 'error'}" class="label">{{item.status}}&nbsp;{{item.message}}</span></td>
+                        </tr>
+                        <tr class="empty" v-if="localLog.length <= 0"><td>&nbsp;</td><td></td><td></td></tr>
+                        <tr class="empty" v-if="localLog.length <= 1"><td>&nbsp;</td><td></td><td></td></tr>
+                        <tr class="empty" v-if="localLog.length <= 2"><td>&nbsp;</td><td></td><td></td></tr>
+                        <tr class="empty" v-if="localLog.length <= 3"><td>&nbsp;</td><td></td><td></td></tr>
+                        <tr class="empty" v-if="localLog.length <= 4"><td>&nbsp;</td><td></td><td></td></tr>
+                        <tr class="empty" v-if="localLog.length <= 5"><td>&nbsp;</td><td></td><td></td></tr>
+                        <tr class="empty" v-if="localLog.length <= 6"><td>&nbsp;</td><td></td><td></td></tr>
+                        <tr class="empty" v-if="localLog.length <= 7"><td>&nbsp;</td><td></td><td></td></tr>
+                        <tr class="empty" v-if="localLog.length <= 8"><td>&nbsp;</td><td></td><td></td></tr>
+                        <tr class="empty" v-if="localLog.length <= 9"><td>&nbsp;</td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+                <footer>
+                    <h3>Enter User ID <span v-bind:class="{success: mode.operation == 'checkIn', primary: mode.operation == 'checkOut'}" class="label">{{this.mode.text}}</span></h3>
+                    <form @submit.prevent="submitForm">
+                        <label><input autocomplete="off" ref="userID" type="text" id="userID" v-model="form.userID" placeholder="User ID"></label>
+                        <button>Submit</button>
+                    </form>
+                </footer>
+            </article>
+        </div>
+        <div v-else>
+            <span class="plainflex alert alert-disabled">Offline</span>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/vue@3.2.26"></script>
+<script src="hours.js"></script>
+</html>
