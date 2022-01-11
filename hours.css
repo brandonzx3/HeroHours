@@ -49,3 +49,6 @@ table {
 .alert-disabled {
   background: #ff4136;
 }
+table .label {
+    font-size: 12px !important;
+}
