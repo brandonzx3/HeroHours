@@ -115,6 +115,8 @@ table .label {
 .member {
 	padding: .25em;
 	font-size: 12px;
+	box-shadow: inset 0 0 1px #fff;
+	border-radius: .5em;
 }
 .member-name {
 	font-weight: bold;
