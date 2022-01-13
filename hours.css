@@ -1,6 +1,10 @@
 .main-content {
-    width: 100%;
+    width: 90vw;
+    margin: auto;
     padding-top: 80px;
+    padding-left: 3.125%;
+    padding-right: 3.125%;
+    padding-bottom: 3.125%;
 }
 .plainflex {
 	display: flex;
@@ -12,18 +16,9 @@
     padding-bottom: 0.6em;  
 }
 .card {
-    margin-left: 3.125%;
-    margin-right: 3.125;
     height: 90vh;
 }
-/* .center {
-    margin: auto;
-    width: 90%;
 
-} */
-.w100 {
-    width:100%;
-}
 /* .empty td {
     padding: 1em 0;
 } */
