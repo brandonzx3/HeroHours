@@ -38,7 +38,7 @@ const app = {
 			usersCheckedIn: 0,
 			onLine: navigator.onLine,
 			dateTime: {
-				date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+				date: `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`,
 				time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
 			},
 			timer: undefined,
@@ -83,7 +83,7 @@ const app = {
 		setDateTime() {
 			const date = new Date();
 			this.dateTime = {
-				date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+				date: `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`,
 				time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
 			};
 		},
