@@ -1,64 +1,64 @@
 .main-content {
-    width: 90vw;
-    margin: auto;
-    padding-top: 80px;
-    padding-left: 3.125%;
-    padding-right: 3.125%;
-    padding-bottom: 3.125%;
+	width: 90vw;
+	margin: auto;
+	padding-top: 80px;
+	padding-left: 3.125%;
+	padding-right: 3.125%;
+	padding-bottom: 3.125%;
 }
 .plainflex {
 	display: flex;
-    flex-wrap: wrap;
-	transition: all .3s ease;
+	flex-wrap: wrap;
+	transition: all 0.3s ease;
 }
-.plainflex > div{
-    flex: 1 1 auto;
-    padding-bottom: 0.6em;  
+.plainflex > div {
+	flex: 1 1 auto;
+	padding-bottom: 0.6em;
 }
 .card {
-    height: 90vh;
+	height: 90vh;
 }
 
 /* .empty td {
     padding: 1em 0;
 } */
 table {
-    font-size: 12px;
-    width: 100% !important;
+	font-size: 12px;
+	width: 100% !important;
 }
 .alert {
-    border: 0;
-    border-radius: .2em;  
-    color: #fff;
-    background: #0074d9;
-    margin: 15px;
+	border: 0;
+	border-radius: 0.2em;
+	color: #fff;
+	background: #0074d9;
+	margin: 15px;
 }
 .alert-success {
-  background: #2ecc40;
+	background: #2ecc40;
 }
 .alert-warning {
-  background: #ff851b
+	background: #ff851b;
 }
 .alert-disabled {
-  background: #ff4136;
+	background: #ff4136;
 }
 
 .input-field {
-    display: flex;
+	display: flex;
 }
 .input-field input {
-    flex: 1 1 auto;
-    margin-right: 1em;
+	flex: 1 1 auto;
+	margin-right: 1em;
 }
 
 article {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 article main {
-    flex: 1 1 auto;
-    width: 100%;
+	flex: 1 1 auto;
+	width: 100%;
 }
 table .label {
-    font-size: 12px !important;
+	font-size: 12px !important;
 }
