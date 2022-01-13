@@ -161,11 +161,13 @@ const app = {
 				.then((response) => response.json())
 				.then((data) => {
 					this.usersData = transformTabularData(data);
-					Object.entries(this.usersData).forEach((user) => 
-					console.log(user),
-					user["status"] && this.usersCheckedIn++
+					data.forEach((item) => {
+						console.log(item),
+						console.log(item[4]),
+						item[4] && this.usersCheckedIn++
+					} 
 					)
-				});
+				}).then(this.usersCheckedIn = this.usersCheckedIn-1);
 		},
 		convertTimestampToDuration(timestamp) {
 			d = Number(timestamp);

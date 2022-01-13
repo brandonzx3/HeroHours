@@ -44,7 +44,7 @@ body {
 .main-content {
 	width: 90vw;
 	margin: auto;
-	padding-top: 80px;
+	padding-top: 70px;
 	padding-left: 3.125%;
 	padding-right: 3.125%;
 	padding-bottom: 3.125%;
@@ -59,7 +59,7 @@ body {
 	padding-bottom: 0.6em;
 }
 .tall {
-	height: 85vh;
+	height: 90vh;
 }
 .h100 {
 	height: 100%;
