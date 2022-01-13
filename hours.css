@@ -1,7 +1,10 @@
 .main-content {
-    padding-top: 80px;
+    width: 90vw;
     margin: auto;
-    max-width: 1000px;
+    padding-top: 80px;
+    padding-left: 3.125%;
+    padding-right: 3.125%;
+    padding-bottom: 3.125%;
 }
 .plainflex {
 	display: flex;
@@ -13,25 +16,15 @@
     padding-bottom: 0.6em;  
 }
 .card {
-    margin-left: 3.125%;
-    margin-right: 3.125;
     height: 90vh;
-
 }
-/* .center {
-    margin: auto;
-    width: 90%;
 
-} */
-.w100 {
-    width:100%;
-}
 /* .empty td {
     padding: 1em 0;
 } */
 table {
     font-size: 12px;
-    width: 100%;
+    width: 100% !important;
 }
 .alert {
     border: 0;
@@ -48,6 +41,23 @@ table {
 }
 .alert-disabled {
   background: #ff4136;
+}
+
+.input-field {
+    display: flex;
+}
+.input-field input {
+    flex: 1 1 auto;
+    margin-right: 1em;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+}
+article main {
+    flex: 1 1 auto;
+    width: 100%;
 }
 table .label {
     font-size: 12px !important;
