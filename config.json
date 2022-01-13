@@ -1,0 +1,5 @@
+{
+    "endpoint": "pasteEndpointHere",
+    "successSound": "Twotone.wav",
+    "errorSound": "Modiferz.wav"
+}
