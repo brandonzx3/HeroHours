@@ -160,6 +160,7 @@ const app = {
 			)
 				.then((response) => response.json())
 				.then((data) => {
+					this.usersCheckedIn = 0;
 					this.usersData = transformTabularData(data);
 					data.forEach((item) => {
 						console.log(item),
