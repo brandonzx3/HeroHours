@@ -2,6 +2,7 @@ let configFile = "config.json";
 let endpoint;
 let successSound;
 let errorSound;
+const date = new Date();
 function transformTabularData(rawdata) {
 	// This is an example of array destructuring.
 	// - extract the first item in the array into local variable `headers`
@@ -34,8 +35,17 @@ const app = {
 			},
 			localLog: [],
 			usersData: [],
+            usersCheckedIn: 0,
 			onLine: navigator.onLine,
+			dateTime: {
+				date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+				time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+			},
+			timer: undefined,
 		};
+	},
+	beforeMount() {
+		this.timer = setInterval(this.setDateTime, 1000);
 	},
 	mounted() {
 		fetch(configFile)
@@ -62,12 +72,23 @@ const app = {
 		window.removeEventListener("offline", this.updateOnlineStatus);
 		window.removeEventListener("keydown");
 	},
+    beforeUnmount() {
+        clearInterval(this.timer);
+    },
 	computed: {
 		localLogEntries() {
 			return this.localLog.slice(-10);
 		},
 	},
 	methods: {
+		setDateTime() {
+		    const date = new Date();
+            this.dateTime = {
+				date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+				time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+              };
+		},
+		//https://javascript.plainenglish.io/create-a-digital-clock-app-with-vue-3-and-javascript-c5c0251d5ce3
 		updateOnlineStatus(e) {
 			const { type } = e;
 			this.onLine = type === "online";
@@ -139,7 +160,7 @@ const app = {
 				.then((response) => response.json())
 				.then((data) => {
 					this.usersData = transformTabularData(data);
-					console.log(this.usersData);
+                    this.usersData.foreach(user => this.usersCheckedIn++)
 				});
 		},
 		convertTimestampToDuration(timestamp) {

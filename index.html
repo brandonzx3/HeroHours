@@ -17,7 +17,7 @@
     </nav>
     <div id="app" class="plainflex two main-content">
         <div>
-            <article class="card">
+            <article class="card tall">
                 <main>
                     <table class="primary center">
                         <thead>
@@ -51,6 +51,17 @@
         &nbsp;
         <div v-if="onLine" class="third">
             <article class="card">
+                <header>
+                    <h1>
+                        {{dateTime.date}}
+                        <br />
+                        {{dateTime.time}}
+                        <br />
+                        {{usersCheckedIn}} Users Checked In
+                    </h1>
+                </header>
+            </article>
+            <article class="card tall">
                 <main>
                     <table class="primary center">
                         <thead>
