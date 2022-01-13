@@ -107,3 +107,28 @@ article main {
 table .label {
 	font-size: 12px !important;
 }
+
+.member-list > div {
+	display: inline-block;
+	width: 50%;
+}
+.member {
+	padding: .25em;
+	font-size: 12px;
+}
+.member-name {
+	font-weight: bold;
+}
+.member-id {
+	font-size: 10px;
+}
+.member-hours {
+	font-size: 10px;
+}
+.member label {
+	opacity: .5;
+}
+.checkedIn .member {
+	background: #0074d9;
+	color: #fff;
+}
