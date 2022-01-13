@@ -1,6 +1,7 @@
-let endpoint = "pasteGoogleAppsScriptEndpointHere";
-let successSound = new Audio('Twotone.wav');
-let errorSound = new Audio('Modiferz.wav');
+let configFile = "config.json"
+let endpoint;
+let successSound;
+let errorSound;
 function transformTabularData(rawdata) {
     // This is an example of array destructuring.
     // - extract the first item in the array into local variable `headers`
@@ -37,6 +38,14 @@ const app = {
         }
     },
     mounted() {
+        fetch(configFile)
+        .then(res => res.json())
+        .then((config) => {
+            console.log(config);
+            endpoint = config["endpoint"];
+            successSound = new Audio(config["successSound"]);
+            errorSound = new Audio(config["errorSound"]);
+        }).catch(err => console.error(err));
         window.addEventListener('online', this.updateOnlineStatus);
         window.addEventListener('offline', this.updateOnlineStatus);
         window.addEventListener('keydown', (e) => {
