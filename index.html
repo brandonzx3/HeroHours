@@ -19,8 +19,8 @@
         <div>
             <article class="card h100">
                 <main class="member-list">
-                    <div v-bind:class="{ checkedIn: row['Checked In'] == true }">
-                        <div class="member" v-for="row in usersData">
+                    <div v-for="row in usersData" v-bind:class="{ checkedIn: row['Checked In'] == true }">
+                        <div class="member">
                             <div class="member-name">{{row["First Name"]}} {{row["Last Name"]}}</div>
                             <div class="member-id"><label>Id:</label> {{row["User ID"]}}</div>
                             <div class="member-hours"><label>Hours:</label> {{convertTimestampToDuration(row["Total Seconds"])}}</div>
