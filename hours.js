@@ -64,7 +64,7 @@ const app = {
 				location.reload();
 			}
 		});
-		document.getElementById("userID").focus();
+		this.$refs.userID.focus()
 	},
 	beforeDestroy() {
 		window.removeEventListener("online", this.updateOnlineStatus);
@@ -93,6 +93,7 @@ const app = {
 			this.onLine = type === "online";
 		},
 		async submitForm() {
+			this.$refs.userID.disabled = true;
 			let response;
 			let responseJSON;
 			//if user types +00 set mode to checkIn
@@ -138,6 +139,8 @@ const app = {
 							status: data.status,
 							message: data.message,
 						});
+						this.$refs.userID.disabled = false;
+						this.$refs.userID.focus()
 					});
 				this.form.userID = "";
 				this.getUsersData();
