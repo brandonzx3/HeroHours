@@ -2,6 +2,7 @@ let configFile = "config.json";
 let endpoint;
 let successSound;
 let errorSound;
+const date = new Date();
 function transformTabularData(rawdata) {
 	// This is an example of array destructuring.
 	// - extract the first item in the array into local variable `headers`
@@ -34,18 +35,27 @@ const app = {
 			},
 			localLog: [],
 			usersData: [],
+			usersCheckedIn: 0,
 			onLine: navigator.onLine,
+			dateTime: {
+				date: `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`,
+				time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+			},
+			timer: undefined,
 		};
+	},
+	beforeMount() {
+		this.timer = setInterval(this.setDateTime, 1000);
 	},
 	mounted() {
 		fetch(configFile)
 			.then((res) => res.json())
 			.then((config) => {
-				console.log(config);
 				endpoint = config["endpoint"];
 				successSound = new Audio(config["successSound"]);
 				errorSound = new Audio(config["errorSound"]);
 			})
+			.then(this.getUsersData)
 			.catch((err) => console.error(err));
 		window.addEventListener("online", this.updateOnlineStatus);
 		window.addEventListener("offline", this.updateOnlineStatus);
@@ -54,13 +64,15 @@ const app = {
 				location.reload();
 			}
 		});
-		document.getElementById("userID").focus();
-		this.getUsersData();
+		this.$refs.userID.focus()
 	},
 	beforeDestroy() {
 		window.removeEventListener("online", this.updateOnlineStatus);
 		window.removeEventListener("offline", this.updateOnlineStatus);
 		window.removeEventListener("keydown");
+	},
+	beforeUnmount() {
+		clearInterval(this.timer);
 	},
 	computed: {
 		localLogEntries() {
@@ -68,11 +80,20 @@ const app = {
 		},
 	},
 	methods: {
+		setDateTime() {
+			const date = new Date();
+			this.dateTime = {
+				date: `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`,
+				time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+			};
+		},
+		//https://javascript.plainenglish.io/create-a-digital-clock-app-with-vue-3-and-javascript-c5c0251d5ce3
 		updateOnlineStatus(e) {
 			const { type } = e;
 			this.onLine = type === "online";
 		},
 		async submitForm() {
+			this.$refs.userID.disabled = true;
 			let response;
 			let responseJSON;
 			//if user types +00 set mode to checkIn
@@ -107,7 +128,6 @@ const app = {
 				)
 					.then((response) => response.json())
 					.then((data) => {
-						console.log(data);
 						if (data.status === "error") {
 							errorSound.play();
 						} else if (data.status === "success") {
@@ -119,6 +139,8 @@ const app = {
 							status: data.status,
 							message: data.message,
 						});
+						this.$refs.userID.disabled = false;
+						this.$refs.userID.focus()
 					});
 				this.form.userID = "";
 				this.getUsersData();
@@ -139,8 +161,13 @@ const app = {
 				.then((response) => response.json())
 				.then((data) => {
 					this.usersData = transformTabularData(data);
-					console.log(this.usersData);
-				});
+					data.forEach((item) => {
+						console.log(item),
+						console.log(item[4]),
+						item[4] && this.usersCheckedIn++
+					} 
+					)
+				}).then(this.usersCheckedIn = this.usersCheckedIn-1);
 		},
 		convertTimestampToDuration(timestamp) {
 			d = Number(timestamp);

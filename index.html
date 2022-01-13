@@ -15,41 +15,33 @@
             <span>Hero Hours</span>
         </a>
     </nav>
-    <div id="app" class="plainflex two main-content">
+    <div id="app" class="plainflex two main-content tall">
         <div>
-            <article class="card">
-                <main>
-                    <table class="primary center">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Total Hours</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="row in usersData">
-                                <td>{{row["User ID"]}}</td>
-                                <td>{{row["First Name"]}}</td>
-                                <td>{{row["Last Name"]}}</td>
-                                <td>{{convertTimestampToDuration(row["Total Seconds"])}}</td>
-                                <td>
-                                    <span
-                                        v-bind:class="{success: row['Checked In'] == true, primary: row['Checked In'] == false}"
-                                        class="label">
-                                        {{ row["Checked In"] ? 'Checked In' : 'Checked Out' }}
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <article class="card h100">
+                <main class="member-list">
+                    <div v-for="row in usersData" v-bind:class="{ checkedIn: row['Checked In'] == true }">
+                        <div class="member">
+                            <div class="member-name">{{row["First Name"]}} {{row["Last Name"]}}</div>
+                            <div class="member-id"><label>Id:</label> {{row["User ID"]}}</div>
+                            <div class="member-hours"><label>Hours:</label> {{convertTimestampToDuration(row["Total Seconds"])}}</div>
+                        </div>
+                    </div>
                 </main>
             </article>
         </div>
         &nbsp;
-        <div v-if="onLine" class="third">
+        <div class="third tall">
+            <article class="card">
+                <header>
+                    <h1>
+                        {{dateTime.date}}
+                        <br />
+                        {{dateTime.time}}
+                        <br />
+                        {{usersCheckedIn}} Users Checked In
+                    </h1>
+                </header>
+            </article>
             <article class="card">
                 <main>
                     <table class="primary center">
@@ -135,11 +127,12 @@
                 <footer>
                     <h3>
                         Enter User ID
-                        <span
+                        <span v-if="onLine"
                             v-bind:class="{success: mode.operation == 'checkIn', primary: mode.operation == 'checkOut'}"
                             class="label">
                             {{this.mode.text}}
                         </span>
+                        <span class="label error" v-else>Offline</span>
                     </h3>
                     <form @submit.prevent="submitForm">
                         <div class="input-field">
@@ -163,9 +156,6 @@
                     </form>
                 </footer>
             </article>
-        </div>
-        <div v-else>
-            <span class="plainflex alert alert-disabled">Offline</span>
         </div>
     </div>
 </body>
