@@ -15,9 +15,9 @@
             <span>Hero Hours</span>
         </a>
     </nav>
-    <div id="app" class="plainflex two main-content">
+    <div id="app" class="plainflex two main-content tall">
         <div>
-            <article class="card tall">
+            <article class="card h100">
                 <main>
                     <table class="primary center">
                         <thead>
@@ -49,7 +49,7 @@
             </article>
         </div>
         &nbsp;
-        <div v-if="onLine" class="third">
+        <div class="third tall">
             <article class="card">
                 <header>
                     <h1>
@@ -61,7 +61,7 @@
                     </h1>
                 </header>
             </article>
-            <article class="card tall">
+            <article class="card">
                 <main>
                     <table class="primary center">
                         <thead>
@@ -144,6 +144,9 @@
                 </main>
 
                 <footer>
+                    <div v-if="!onLine">
+                        <span class="alert alert-disabled">Offline</span>
+                    </div>
                     <h3>
                         Enter User ID
                         <span
@@ -174,9 +177,6 @@
                     </form>
                 </footer>
             </article>
-        </div>
-        <div v-else>
-            <span class="plainflex alert alert-disabled">Offline</span>
         </div>
     </div>
 </body>

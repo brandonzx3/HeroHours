@@ -35,7 +35,7 @@ const app = {
 			},
 			localLog: [],
 			usersData: [],
-            usersCheckedIn: 0,
+			usersCheckedIn: 0,
 			onLine: navigator.onLine,
 			dateTime: {
 				date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
@@ -51,11 +51,11 @@ const app = {
 		fetch(configFile)
 			.then((res) => res.json())
 			.then((config) => {
-				console.log(config);
 				endpoint = config["endpoint"];
 				successSound = new Audio(config["successSound"]);
 				errorSound = new Audio(config["errorSound"]);
 			})
+			.then(this.getUsersData)
 			.catch((err) => console.error(err));
 		window.addEventListener("online", this.updateOnlineStatus);
 		window.addEventListener("offline", this.updateOnlineStatus);
@@ -72,9 +72,9 @@ const app = {
 		window.removeEventListener("offline", this.updateOnlineStatus);
 		window.removeEventListener("keydown");
 	},
-    beforeUnmount() {
-        clearInterval(this.timer);
-    },
+	beforeUnmount() {
+		clearInterval(this.timer);
+	},
 	computed: {
 		localLogEntries() {
 			return this.localLog.slice(-10);
@@ -82,11 +82,11 @@ const app = {
 	},
 	methods: {
 		setDateTime() {
-		    const date = new Date();
-            this.dateTime = {
+			const date = new Date();
+			this.dateTime = {
 				date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
 				time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
-              };
+			};
 		},
 		//https://javascript.plainenglish.io/create-a-digital-clock-app-with-vue-3-and-javascript-c5c0251d5ce3
 		updateOnlineStatus(e) {
@@ -128,7 +128,6 @@ const app = {
 				)
 					.then((response) => response.json())
 					.then((data) => {
-						console.log(data);
 						if (data.status === "error") {
 							errorSound.play();
 						} else if (data.status === "success") {
@@ -160,7 +159,10 @@ const app = {
 				.then((response) => response.json())
 				.then((data) => {
 					this.usersData = transformTabularData(data);
-                    this.usersData.foreach(user => this.usersCheckedIn++)
+					Object.entries(this.usersData).forEach((user) => 
+					console.log(user),
+					user["status"] && this.usersCheckedIn++
+					)
 				});
 		},
 		convertTimestampToDuration(timestamp) {
