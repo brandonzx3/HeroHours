@@ -64,7 +64,7 @@ const app = {
 				location.reload();
 			}
 		});
-		this.$refs.userID.focus()
+		this.enableUserField();
 	},
 	beforeDestroy() {
 		window.removeEventListener("online", this.updateOnlineStatus);
@@ -78,8 +78,16 @@ const app = {
 		localLogEntries() {
 			return this.localLog.slice(-10);
 		},
+
 	},
 	methods: {
+		enableUserField() {
+			this.$refs.userID.disabled = false;
+			this.$refs.userID.focus()
+		},
+		disableUserField() {
+			this.$refs.userID.disabled = true;
+		},
 		setDateTime() {
 			const date = new Date();
 			this.dateTime = {
@@ -93,7 +101,7 @@ const app = {
 			this.onLine = type === "online";
 		},
 		async submitForm() {
-			this.$refs.userID.disabled = true;
+			this.disableUserField();
 			let response;
 			let responseJSON;
 			//if user types +00 set mode to checkIn
@@ -102,6 +110,8 @@ const app = {
 				this.mode.text = "Check In";
 				this.form.userID = "";
 				this.getUsersData();
+				this.enableUserField();
+
 			}
 			//if user types +01 set mode to checkOut
 			else if (this.form.userID === "+01") {
@@ -109,10 +119,11 @@ const app = {
 				this.mode.text = "Check Out";
 				this.form.userID = "";
 				this.getUsersData();
+				this.enableUserField();
 			}
 			//if user submits nothing do nothing
 			else if (this.form.userID === "") {
-				this.getUsersData();
+				this.enableUserField();
 			} else {
 				await fetch(
 					endpoint +
@@ -139,8 +150,7 @@ const app = {
 							status: data.status,
 							message: data.message,
 						});
-						this.$refs.userID.disabled = false;
-						this.$refs.userID.focus()
+						this.enableUserField();
 					});
 				this.form.userID = "";
 				this.getUsersData();
@@ -160,15 +170,16 @@ const app = {
 			)
 				.then((response) => response.json())
 				.then((data) => {
-					this.usersCheckedIn = 0;
+					usersCheckedInCount = 0
 					this.usersData = transformTabularData(data);
-					data.forEach((item) => {
-						console.log(item),
-						console.log(item[4]),
-						item[4] && this.usersCheckedIn++
-					} 
+					data.forEach((item, index) => {
+						if (index > 0) {
+							item[4] === true && usersCheckedInCount++
+						}
+					}, 
 					)
-				}).then(this.usersCheckedIn = this.usersCheckedIn-1);
+					this.usersCheckedIn = usersCheckedInCount - 1
+				});
 		},
 		convertTimestampToDuration(timestamp) {
 			d = Number(timestamp);
