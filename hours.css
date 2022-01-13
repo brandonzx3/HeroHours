@@ -71,23 +71,6 @@ table {
 	font-size: 12px;
 	width: 100% !important;
 }
-.alert {
-	border: 0;
-	border-radius: 0.2em;
-	color: #fff;
-	background: #0074d9;
-	margin: 15px;
-}
-.alert-success {
-	background: #2ecc40;
-}
-.alert-warning {
-	background: #ff851b;
-}
-.alert-disabled {
-	background: #ff4136;
-}
-
 .input-field {
 	display: flex;
 }
@@ -113,11 +96,11 @@ table .label {
 	width: 25%;
 }
 .member {
-	margin: .25em;
-	padding: .5em;
+	margin: 0.25em;
+	padding: 0.5em;
 	font-size: 12px;
 	box-shadow: inset 0 0 1px #fff;
-	border-radius: .5em;
+	border-radius: 0.5em;
 }
 .member-name {
 	font-weight: bold;
@@ -129,7 +112,7 @@ table .label {
 	font-size: 12px;
 }
 .member label {
-	opacity: .5;
+	opacity: 0.5;
 }
 .checkedIn .member {
 	background: #0074d9;

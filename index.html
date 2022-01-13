@@ -23,7 +23,8 @@
                         <div class="member">
                             <div class="member-name">{{row["First Name"]}} {{row["Last Name"]}}</div>
                             <div class="member-id"><label>Id:</label> {{row["User ID"]}}</div>
-                            <div class="member-hours"><label>Hours:</label> {{convertTimestampToDuration(row["Total Seconds"])}}</div>
+                            <div class="member-hours"><label>Hours:</label> {{convertTimestampToDuration(row["Total
+                                Seconds"])}}</div>
                         </div>
                     </div>
                 </main>
@@ -125,16 +126,14 @@
                 </main>
 
                 <footer>
-                    <div v-if="!onLine">
-                        <span class="alert alert-disabled">Offline</span>
-                    </div>
                     <h3>
                         Enter User ID
-                        <span
+                        <span v-if="onLine"
                             v-bind:class="{success: mode.operation == 'checkIn', primary: mode.operation == 'checkOut'}"
                             class="label">
                             {{this.mode.text}}
                         </span>
+                        <span class="label error" v-else>Offline</span>
                     </h3>
                     <form @submit.prevent="submitForm">
                         <div class="input-field">
