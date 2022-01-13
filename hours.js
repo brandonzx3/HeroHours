@@ -65,7 +65,6 @@ const app = {
 			}
 		});
 		document.getElementById("userID").focus();
-		this.getUsersData();
 	},
 	beforeDestroy() {
 		window.removeEventListener("online", this.updateOnlineStatus);
