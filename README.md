@@ -16,7 +16,7 @@ Team 5892's attendance solution
 ![image](https://user-images.githubusercontent.com/20732350/149431737-ce1ee7d6-9b2e-4e98-999e-5821f1120c12.png)
 5. Note the WebApp URL for later
 ![image](https://user-images.githubusercontent.com/20732350/149431904-28357011-3868-4a14-92f2-4bd67b910ed9.png)
-6. Upload HeroHours Template as a template and replace all existing sheet content
+6. Upload HeroHours Simple.xlsx as a template and replace all existing sheet content. For a more advanced implementation with some fancy conditionals that our team uses, try HeroHours Advanced.xlsx. Batteries not included (some minimal manual labor required) 
 ### Setting up your kiosk
 1. Install a webserver of some sort onto your kiosk (I use python3's http.server)
 2. Copy HeroHours into a directory of your choice
