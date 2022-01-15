@@ -98,6 +98,12 @@ const app = {
 		//https://javascript.plainenglish.io/create-a-digital-clock-app-with-vue-3-and-javascript-c5c0251d5ce3
 		updateOnlineStatus(e) {
 			const { type } = e;
+			if (e.type === "offline") {
+				this.disableUserField();
+			}
+			else {
+				this.enableUserField();
+			}
 			this.onLine = type === "online";
 		},
 		async submitForm() {
