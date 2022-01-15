@@ -178,7 +178,7 @@ const app = {
 						}
 					}, 
 					)
-					this.usersCheckedIn = usersCheckedInCount - 1
+					this.usersCheckedIn = usersCheckedInCount
 				});
 		},
 		convertTimestampToDuration(timestamp) {
