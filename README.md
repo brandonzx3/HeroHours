@@ -1,7 +1,11 @@
 # HeroHours
 Team 5892's attendance solution
-### A lone redacted screenshot (submit a pr if you have a better one)
-![image](https://user-images.githubusercontent.com/20732350/149432819-06f04b8b-c6f8-4219-9990-91f981b9d769.png)
+### Screenshots (submit a pr if you have better ones)
+![checkIn](https://user-images.githubusercontent.com/20732350/149608857-518c859c-a774-4625-b0f6-78c7febc67f9.png)
+
+
+https://user-images.githubusercontent.com/20732350/149608923-883f7adf-dfcf-45ab-8874-790fb5a9d218.mp4
+
 
 ## How to install
 ### Setting up google sheets and apps script
